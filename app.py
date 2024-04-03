@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from gtts import gTTS
 import os
+from time import time
 
 app = Flask(__name__)
 
@@ -13,8 +14,10 @@ def convert():
     if request.method == 'POST':
         text = request.form['text']
         tts = gTTS(text=text, lang='en')
-        tts.save("static/output.mp3")
-        return render_template('index.html', audio=True)
+        timestamp = int(time())  # Get current timestamp
+        filename = f"output_{timestamp}.mp3"  # Generate unique filename
+        tts.save(f"static/{filename}")
+        return render_template('index.html', audio=True, timestamp=timestamp)
 
 if __name__ == '__main__':
     app.run(debug=True)
