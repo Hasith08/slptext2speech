@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text to Speech</title>
+</head>
+<body>
+    <h2>Enter Text to Convert to Speech:</h2>
+    <form method="post" action="{{ url_for('convert') }}">
+        <textarea name="text" rows="5" cols="50"></textarea><br>
+        <input type="submit" value="Convert">
+    </form>
+</body>
+</html>
